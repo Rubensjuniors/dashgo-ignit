@@ -1,22 +1,23 @@
-import { Header } from '@/components/Header'
-import { Sidebar } from '@/components/Sidebar'
-import { SidebarDrawerProvider } from '@/context/SidebarDrawerContext'
 import { theme } from '@/styles/theme'
-import { ChakraProvider, Flex } from '@chakra-ui/react'
+import { ChakraProvider } from '@chakra-ui/react'
+import { NextPage } from 'next'
 import type { AppProps } from 'next/app'
+import { ReactNode } from 'react'
 
-export default function App({ Component, pageProps }: AppProps) {
+// eslint-disable-next-line @typescript-eslint/ban-types
+type Page<P = {}> = NextPage<P> & {
+  getLayout?: (page: ReactNode) => ReactNode
+}
+
+type Props = AppProps & {
+  Component: Page
+}
+
+export default function App({ Component, pageProps }: Props) {
+  const getLayout = Component?.getLayout ?? ((page: ReactNode) => page)
   return (
-    <SidebarDrawerProvider>
-      <ChakraProvider theme={theme}>
-        <Flex direction="column" h="100vh">
-          <Header />
-          <Flex w="100%" my="6" maxWidth={1400} mx="auto" px="6">
-            <Sidebar />
-            <Component {...pageProps} />
-          </Flex>
-        </Flex>
-      </ChakraProvider>
-    </SidebarDrawerProvider>
+    <ChakraProvider theme={theme}>
+      {getLayout(<Component {...pageProps} />)}
+    </ChakraProvider>
   )
 }

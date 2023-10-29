@@ -6,6 +6,7 @@ import { Profile } from './components/Profile'
 import { SearchBox } from './components/SearchBox'
 import { RiMenuLine } from 'react-icons/ri'
 import { useSidebarDrawer } from '../../context/SidebarDrawerContext'
+import Link from 'next/link'
 
 export function Header() {
   const { onOpen } = useSidebarDrawer()
@@ -36,7 +37,9 @@ export function Header() {
         ></IconButton>
       )}
 
-      <Logo />
+      <Link href="/dashboard">
+        <Logo />
+      </Link>
       {isWideVersion && <SearchBox />}
 
       <Flex align="center" ml="auto">

@@ -18,25 +18,28 @@ import {
 import { RiAddLine, RiPencilLine } from 'react-icons/ri'
 import NextLink from 'next/link'
 import { Pagination } from '../../components/Pagination'
+import RootLayout from '@/layout'
+import { ReactNode } from 'react'
+import { formatDistanceToNow } from 'date-fns'
 
 const users = [
   {
     id: 1,
-    name: 'Rubens junio',
-    email: 'rubens@gmail.com',
-    createdAt: `2021-12-21T00:00:00.000Z`,
+    name: 'User test 1',
+    email: 'Usertest1@gmail.com',
+    createdAt: `2023-08-02T00:00:00.000Z`,
   },
   {
     id: 2,
-    name: 'Rubens junio',
-    email: 'rubens@gmail.com',
-    createdAt: `2021-12-21T00:00:00.000Z`,
+    name: 'User test 2',
+    email: 'Usertest2@gmail.com',
+    createdAt: `2023-09-18T00:00:00.000Z`,
   },
   {
     id: 3,
-    name: 'Rubens junio',
-    email: 'rubens@gmail.com',
-    createdAt: `2021-12-21T00:00:00.000Z`,
+    name: 'User test 3',
+    email: 'Usertest3@gmail.com',
+    createdAt: `2023-09-28T00:00:00.000Z`,
   },
 ]
 
@@ -102,7 +105,9 @@ export default function UserList() {
                     </Text>
                   </Box>
                 </Td>
-                {isWideVersion && <Td>{user.createdAt}</Td>}
+                {isWideVersion && (
+                  <Td>{formatDistanceToNow(new Date(user.createdAt))}</Td>
+                )}
                 {isWideVersion && (
                   <Td>
                     <Button
@@ -125,4 +130,8 @@ export default function UserList() {
       <Pagination />
     </Box>
   )
+}
+
+UserList.getLayout = (page: ReactNode) => {
+  return <RootLayout>{page}</RootLayout>
 }

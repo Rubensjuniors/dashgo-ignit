@@ -1,5 +1,7 @@
+import RootLayout from '@/layout'
 import { Box, SimpleGrid, Text, theme } from '@chakra-ui/react'
 import dynamic from 'next/dynamic'
+import { ReactNode } from 'react'
 import { Props } from 'react-apexcharts'
 
 const Chart = dynamic(() => import('react-apexcharts'), {
@@ -73,4 +75,8 @@ export default function Dashboard() {
       </Box>
     </SimpleGrid>
   )
+}
+
+Dashboard.getLayout = (page: ReactNode) => {
+  return <RootLayout>{page}</RootLayout>
 }

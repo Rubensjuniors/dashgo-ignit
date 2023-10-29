@@ -1,4 +1,5 @@
 import { Input } from '@/components/Form/Input'
+import RootLayout from '@/layout'
 import {
   Box,
   Divider,
@@ -10,6 +11,7 @@ import {
   HStack,
 } from '@chakra-ui/react'
 import Link from 'next/link'
+import { ReactNode } from 'react'
 
 export default function CreateUser() {
   return (
@@ -47,4 +49,8 @@ export default function CreateUser() {
       </Flex>
     </Box>
   )
+}
+
+CreateUser.getLayout = (page: ReactNode) => {
+  return <RootLayout>{page}</RootLayout>
 }
