@@ -49,14 +49,12 @@ export default function SignIn() {
             label="E-mail"
             type="email"
             error={errors.email}
-            isRequired
             {...register("email")}
           />
           <Input
             label="Senha"
             type="password"
             error={errors.password}
-            isRequired
             {...register("password")}
           />
         </Stack>

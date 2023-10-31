@@ -26,6 +26,7 @@ export default function CreateUser() {
     const handleSignUp = async (data: SignUpFormData) => {
       await new Promise(resolve => setTimeout(resolve, 2000))
       console.log(data)
+      router.push('/users')
       reset()
     }
 
@@ -37,17 +38,16 @@ export default function CreateUser() {
       <Divider my="6" borderColor="gray.700" />
       <VStack spacing={['6', '8']} >
         <SimpleGrid minChildWidth="240px" spacing={['6', '8']} w="100%">
-          <Input label="Nome completo" {...register('fullName')} error={errors.fullName} isRequired />
-          <Input  type="email" label="E-mail" {...register('email')} error={errors.email} isRequired/>
+          <Input label="Nome completo" {...register('fullName')} error={errors.fullName} />
+          <Input  type="email" label="E-mail" {...register('email')} error={errors.email}/>
         </SimpleGrid>
 
         <SimpleGrid minChildWidth="240px" spacing={['6', '8']} w="100%">
-          <Input type="password" label="Senha" {...register('password')} error={errors.password} isRequired/>
+          <Input type="password" label="Senha" {...register('password')} error={errors.password}/>
           <Input
             type="password"
             label="Confirmação da senha"
             error={errors.confirmPassword}
-            isRequired
             {...register('confirmPassword')}
           />
         </SimpleGrid>
@@ -59,7 +59,7 @@ export default function CreateUser() {
               Cancelar
             </Button>
           </Link>
-          <Button type="submit" colorScheme="pink" isLoading={isSubmitting} isDisabled={isSubmitting} onClick={() => router.push('/users')}>
+          <Button type="submit" colorScheme="pink" isLoading={isSubmitting} isDisabled={isSubmitting}>
             Salvar
           </Button>
         </HStack>
