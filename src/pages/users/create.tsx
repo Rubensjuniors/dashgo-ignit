@@ -59,7 +59,7 @@ export default function CreateUser() {
               Cancelar
             </Button>
           </Link>
-          <Button type="submit" colorScheme="pink" isLoading={isSubmitting} isDisabled={isSubmitting} onClick={() => router.push('/user')}>
+          <Button type="submit" colorScheme="pink" isLoading={isSubmitting} isDisabled={isSubmitting} onClick={() => router.push('/users')}>
             Salvar
           </Button>
         </HStack>
