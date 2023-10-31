@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "json-server": "json-server server.json -p 3333 -w -d 900"
   },
   "dependencies": {
     "@chakra-ui/core": "^0.8.0",
@@ -14,7 +15,9 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@hookform/resolvers": "^3.3.2",
+    "@types/axios": "^0.14.0",
     "apexcharts": "^3.44.0",
+    "axios": "^1.6.0",
     "date-fns": "^2.30.0",
     "framer-motion": "^10.16.4",
     "next": "14.0.0",
@@ -23,6 +26,7 @@
     "react-dom": "^18",
     "react-hook-form": "^7.47.0",
     "react-icons": "^4.11.0",
+    "react-query": "^3.39.3",
     "zod": "^3.22.4"
   },
   "devDependencies": {
@@ -32,6 +36,8 @@
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.0.0",
+    "json-serve": "^0.1.0",
+    "json-server": "^0.17.4",
     "typescript": "^5"
   }
 }

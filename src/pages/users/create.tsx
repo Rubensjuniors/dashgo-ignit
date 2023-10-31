@@ -54,11 +54,9 @@ export default function CreateUser() {
       </VStack>
       <Flex mt="8" justify="flex-end">
         <HStack spacing={['3', '4']}>
-          <Link href="/users" passHref>
-            <Button as="a" colorScheme="whiteAlpha">
+            <Button as="a" colorScheme="whiteAlpha" onClick={() => router.push('/users')}>
               Cancelar
             </Button>
-          </Link>
           <Button type="submit" colorScheme="pink" isLoading={isSubmitting} isDisabled={isSubmitting}>
             Salvar
           </Button>

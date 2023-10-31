@@ -1,8 +1,11 @@
+import { queryClient } from '@/services/queryClint'
 import { theme } from '@/styles/theme'
 import { ChakraProvider } from '@chakra-ui/react'
 import { NextPage } from 'next'
-import type { AppProps } from 'next/app'
+import { AppProps } from 'next/app'
 import { ReactNode } from 'react'
+import { QueryClientProvider } from 'react-query'
+import { ReactQueryDevtools } from 'react-query/devtools'
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 type Page<P = {}> = NextPage<P> & {
@@ -16,8 +19,11 @@ type Props = AppProps & {
 export default function App({ Component, pageProps }: Props) {
   const getLayout = Component?.getLayout ?? ((page: ReactNode) => page)
   return (
-    <ChakraProvider theme={theme}>
-      {getLayout(<Component {...pageProps} />)}
-    </ChakraProvider>
+    <QueryClientProvider client={queryClient}>
+      <ChakraProvider theme={theme}>
+        {getLayout(<Component {...pageProps} />)}
+      </ChakraProvider>
+      <ReactQueryDevtools/>
+    </QueryClientProvider>
   )
 }
