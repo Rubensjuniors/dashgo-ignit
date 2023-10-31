@@ -1,17 +1,18 @@
 import { Button, Flex, Stack } from '@chakra-ui/react'
 import { Input } from '../components/Form/Input'
 import { useForm } from 'react-hook-form'
-import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { SignInFormData, SingInFormSchema } from '@/schemas/singInForm'
+import { useRouter } from 'next/router'
 
-const SingInFormSchema = z.object({
-  email: z.string().email("This is not a valid email."),
-  password: z.string().min(8)
-})
+const userValidity = {
+  email: 'user@example.com',
+  password: 'senha123'
+}
 
-type SignInFormData = z.infer<typeof SingInFormSchema>
 
 export default function SignIn() {
+  const router = useRouter()
   const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm<SignInFormData>(
     {resolver: zodResolver(SingInFormSchema)}
     )
@@ -19,6 +20,10 @@ export default function SignIn() {
   const handleSignIn = async (data: SignInFormData) => {
     await new Promise(resolve => setTimeout(resolve, 2000))
     console.log(data)
+
+    if(data.email === userValidity.email && data.password === userValidity.password) {
+      router.push('/dashboard')
+    }
     reset()
   }
 
@@ -44,12 +49,14 @@ export default function SignIn() {
             label="E-mail"
             type="email"
             error={errors.email}
+            isRequired
             {...register("email")}
           />
           <Input
             label="Senha"
             type="password"
             error={errors.password}
+            isRequired
             {...register("password")}
           />
         </Stack>
@@ -60,6 +67,7 @@ export default function SignIn() {
           colorScheme="pink"
           size="lg"
           isLoading={isSubmitting}
+          isDisabled={isSubmitting}
         >
           Entrar
         </Button>

@@ -33,11 +33,12 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
         size="lg"
         ref={ref}
         {...rest}
+        autoComplete="off"
       />
 
       { !!error && (
         <FormErrorMessage>
-          {error.message}
+          {error?.message}
         </FormErrorMessage>
       )}
     </FormControl>
